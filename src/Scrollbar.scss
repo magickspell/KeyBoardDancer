@@ -1,0 +1,36 @@
+* {
+  //если ставить кастомный, то зеленка снизу перекрывает скрол on mobile
+
+  /*for mozilla*/
+  scrollbar-color: #277BC0 lightgray;
+  scrollbar-width: thin;
+
+  /*for chrome, safari (webkit) */
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar:vertical,
+  &::-webkit-scrollbar:horizontal {
+    //display: none;
+    width: 6px; // width of the scrollbar
+    height: 6px; // height of the scrollbar
+    background-color: lightgray; //var(--color-green); //$color-yellow //color of the scroll bar road fon
+    border-radius: 20px 20px 20px 20px;
+  }
+
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb:horizontal,
+  &::-webkit-scrollbar-thumb:vertical  {
+    background: #277BC0; //$color-green //color of the scrollbar button
+    border-radius: 25px;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:horizontal,
+  &::-webkit-scrollbar-track:vertical { // track witch scrollbar scrolling
+    background-color: lightgray; //var(--color-green);
+  }
+
+  &::-webkit-scrollbar-button { // scrollbar buttons (on top left right and bottom)
+    display: none;
+  }
+
+}

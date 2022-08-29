@@ -1,58 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import './App.scss';
+import {Navbar} from "./components/layouts/Navbar";
+import {Footer} from "./components/layouts/Footer";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {MainPage} from "./components/views/MainPage";
+import {Info} from "./components/views/Info";
+import {RedirectFunc} from "./functions/RedirectFunc";
+import {LeaderBoard} from "./components/views/LeaderBoard";
+import {Game} from "./components/views/Game";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <div className={"mask"}></div>
+            <Navbar/>
+
+            <Routes>
+                <Route element={<MainPage/>} path={RedirectFunc({code: ''})}/>
+                <Route element={<Info/>} path={RedirectFunc({code: 'info'})}/>
+                <Route element={<LeaderBoard/>} path={RedirectFunc({code: 'leaderboard'})}/>
+                <Route element={<Game/>} path={RedirectFunc({code: 'game'})}/>
+            </Routes>
+
+            <Footer/>
+        </BrowserRouter>
+    )
+        ;
 }
 
 export default App;

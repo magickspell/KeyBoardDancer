@@ -1,39 +1,262 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
+@mixin page-sizing {
+  padding: 8px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  margin: 0 auto;
+  width: 90%;
+  overflow: auto;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+$yellow: #FCF8E8;
+$green: #94B49F;
+$red: #DF7861;
+$violet: #76549A;
+$darkblue: #001133;
+$blue: #277BC0;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
+body {
+  background: darkslateblue;
+  color: white;
+}
+
+.mask {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.1;
+  z-index: -100;
+  //background: url("./img/blackKeyboard.jpg");
+  background: url("./img/whiteKeyboard.jpg");
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background: #001133;
+  color: white;
+
+  img {
+    margin-right: 20px;
+    height: 40px;
+    display: none;
   }
-  50% {
-    transform: translateY(10px);
+  .logo {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 4px solid $blue;
+    border-radius: 50px;
+    color: black;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+    }
+    /*отключить выделение текста*/
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
   }
-  100% {
-    transform: translateY(0px);
+
+  ul {
+    display: flex;
+    list-style: none;
+
+    li {
+      margin-left: 20px;
+      transition: 0.3s;
+
+      &:hover {
+        cursor: pointer;
+        color: orange;
+      }
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background: #001133;
+  color: white;
+
+  ul {
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    list-style: none;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+
+      li {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+.main-menu {
+  @include page-sizing;
+
+  align-items: center;
+
+  ul {
+    list-style: none;
+
+    li {
+      margin-top: 16px;
+      border: none;
+      border-radius: 20px;
+      width: 160px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.4s;
+      cursor: pointer;
+
+      &:nth-child(1n) {
+        background: $green;
+        color: black;
+      }
+
+      &:nth-child(2n) {
+        background: $blue;
+        color: white;
+      }
+
+      &:nth-child(3n) {
+        background: $red;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.info {
+  @include page-sizing;
+
+  h1 {
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  p {
+    text-align: start;
+  }
+}
+
+.leader-board {
+  @include page-sizing;
+  align-items: center;
+}
+
+.game {
+  @include page-sizing;
+  align-items: center;
+  padding-bottom: 80px;
+
+  .game__target {
+    font-size: 32px;
+    font-style: italic;
+    width: 90%;
+    margin: 60px auto 20px;
+    text-align: center;
+  }
+
+  .game__input_text {
+    padding: 8px;
+    height: 60px;
+    width: 90%;
+    min-height: 160px;
+    max-height: 300px;
+    resize: vertical;
+    font-size: 24px;
+    background-color: rgba(0,0,0,0.3);
+    border: none;
+    outline: 4px solid $blue;
+    color: white;
+  }
+
+  .game__hints {
+    font-size: 14px;
+    list-style: none;
+    overflow-x: auto;
+    display: flex;
+    justify-content: start;
+    width: 90%;
+    margin: 12px auto 0;
+
+    .game__hints_title {
+      font-style: italic;
+      white-space: nowrap;
+    }
+    .game__hints_item {
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+  }
+
+  .game__btns {
+    margin: 32px auto;
+    min-width: 10%;
+    display: flex;
+    justify-content: space-between;
+
+    .game__btns_btn {
+      margin: 4px;
+      width: 60px;
+      height: 32px;
+      border: none;
+      transition: 0.4s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      &:nth-child(1n) {
+        background: $green;
+      }
+      &:nth-child(2n) {
+        background: $blue;
+        color: white;
+      }
+      &:nth-child(3n) {
+        background: $violet;
+        color: white;
+      }
+      &:nth-child(4n) {
+        background: $red;
+      }
+    }
   }
 }
