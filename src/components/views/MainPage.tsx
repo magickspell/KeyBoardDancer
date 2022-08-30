@@ -8,6 +8,9 @@ export const MainPage = () => {
 
     return(
         <section className={"main-menu"}>
+            <div className={"main-menu__wrapper"}>
+
+
             <h2 className={"main-menu__title"}>
                 Choose difficulty
             </h2>
@@ -19,6 +22,7 @@ export const MainPage = () => {
                 <li>Medium</li>
                 <li>Hard</li>
             </ul>
+            </div>
         </section>
     )
 }

@@ -9,6 +9,7 @@
   overflow: auto;
 }
 
+/* colors variables */
 $yellow: #FCF8E8;
 $green: #94B49F;
 $red: #DF7861;
@@ -37,6 +38,37 @@ body {
   background: url("./img/whiteKeyboard.jpg");
 }
 
+.not-found {
+  @include page-sizing;
+  cursor: default;
+
+  .not-found__wrapper {
+    background-color: rgb(0, 1, 51, 0.85);
+    width: 300px;
+    padding: 24px;
+    border-radius: 20px;
+    margin: 0 auto;
+  }
+
+  .not-found__title {
+    font-size: 24px;
+  }
+
+  .not-found__list {
+    list-style: none;
+
+    .not-found__list__item {
+      margin-top: 12px;
+      transition: 0.4s;
+
+      &:hover {
+        text-decoration: underline;
+        transform: translateX(5%);
+      }
+    }
+  }
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -48,12 +80,14 @@ nav {
   width: 100%;
   background: #001133;
   color: white;
+  //border-radius: 0px 0px 20px 20px;
 
   img {
     margin-right: 20px;
     height: 40px;
     display: none;
   }
+
   .logo {
     margin-right: 20px;
     width: 40px;
@@ -66,9 +100,11 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+
     &:hover {
       cursor: pointer;
     }
+
     /*отключить выделение текста*/
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -90,6 +126,10 @@ nav {
         cursor: pointer;
         color: orange;
       }
+
+      &.selected {
+        color: orange;
+      }
     }
   }
 }
@@ -102,6 +142,42 @@ footer {
   width: 100%;
   background: #001133;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  //border-radius: 20px 20px 0px 0px;
+
+  .footer__btns {
+    width: 100px;
+    //visibility: hidden;
+    .footer__btn_github,
+    .footer__btn_music {
+      width: 36px;
+      height: 36px;
+      border-radius: 40px;
+      font-size: 24px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .footer__timer {
+    font-size: 32px;
+    width: 100px;
+    text-align: center;
+  }
+
+  .footer__timer_hidden {
+    visibility: hidden;
+  }
 
   ul {
     padding: 0 4px;
@@ -109,6 +185,7 @@ footer {
     flex-direction: column;
     justify-content: end;
     list-style: none;
+    width: 100px;
 
     ul {
       display: flex;
@@ -116,6 +193,10 @@ footer {
 
       li {
         margin-left: 8px;
+        &:hover {
+          color: $green;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -123,6 +204,16 @@ footer {
 
 .main-menu {
   @include page-sizing;
+
+  .main-menu__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgb(0, 17, 51, 0.85);
+  }
 
   align-items: center;
 
@@ -164,14 +255,40 @@ footer {
 
 .info {
   @include page-sizing;
+  padding: 80px 0;
+
+  article {
+    background: rgb(0, 17, 51, 0.85);
+    padding: 24px 36px 12px;
+    border-radius: 20px;
+  }
 
   h1 {
     margin: 8px 0;
     text-align: center;
+
   }
 
   p {
     text-align: start;
+  }
+
+  .info__github {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    align-self: end;
+    margin: 12px 95% 0;
+    &:hover {
+      cursor: pointer;
+    }
+    outline: 2px solid white;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+    }
   }
 }
 
@@ -191,6 +308,16 @@ footer {
     width: 90%;
     margin: 60px auto 20px;
     text-align: center;
+    background: $darkblue;
+    padding: 24px;
+
+    /*отключить выделение текста*/
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
   }
 
   .game__input_text {
@@ -201,7 +328,7 @@ footer {
     max-height: 300px;
     resize: vertical;
     font-size: 24px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgb(0, 17, 51, 0.75);
     border: none;
     outline: 4px solid $blue;
     color: white;
@@ -220,6 +347,7 @@ footer {
       font-style: italic;
       white-space: nowrap;
     }
+
     .game__hints_item {
       white-space: nowrap;
       margin-left: 12px;
@@ -243,19 +371,24 @@ footer {
         cursor: pointer;
         transform: scale(1.2);
       }
+
       &:nth-child(1n) {
         background: $green;
       }
+
       &:nth-child(2n) {
         background: $blue;
         color: white;
       }
+
       &:nth-child(3n) {
         background: $violet;
         color: white;
       }
+
       &:nth-child(4n) {
         background: $red;
+        color: black;
       }
     }
   }
