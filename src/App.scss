@@ -157,6 +157,7 @@ footer {
       height: 36px;
       border-radius: 40px;
       font-size: 24px;
+      background-color: $blue;
 
       img {
         width: 40px;
@@ -170,7 +171,7 @@ footer {
   }
 
   .footer__timer {
-    font-size: 32px;
+    font-size: 28px;
     width: 100px;
     text-align: center;
   }
@@ -366,6 +367,9 @@ footer {
       height: 32px;
       border: none;
       transition: 0.4s;
+      &.clicked {
+        transform: scale(1.2);
+      }
 
       &:hover {
         cursor: pointer;
