@@ -14,6 +14,9 @@ export const RedirectFunc = (obj: funcProps): string => {
         case '':
             return '/';
 
+        case 'main':
+            return '/';
+
         case 'info':
             return '/info';
 
@@ -28,7 +31,7 @@ export const RedirectFunc = (obj: funcProps): string => {
 
         //DEFAULTS
         default:
-            return '/';
+            return '/404';
     }
     //return 'ok' //void
 }

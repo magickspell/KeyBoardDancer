@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useAppSelector} from "../../store/hooks";
+import {Popup} from "./Popup";
 
 export const Footer = () => {
 
+    //popup
+    let [popupVis, setPopupVis] = useState(false)
+
+    //get location to set up timer or nor
     let [currentLocation, setCurrentLocation] = useState(window.location.pathname)
     setInterval(() => { // for check current location
         if (currentLocation !== window.location.pathname) {
@@ -47,11 +52,17 @@ export const Footer = () => {
 
     return (
         <footer>
+            {
+                (popupVis)
+                    ? <Popup title={"Oops"} text={`Something went wrong... try again later.`} setPopup={setPopupVis}/>
+                    : []
+            }
             <div className={"footer__btns"}>
                 <button
                     className={"footer__btn_music"}
                     onClick={() => {
                         setPlay(!play)
+                        setPopupVis(true)
                     }}
                 >
                     {
@@ -66,11 +77,16 @@ export const Footer = () => {
                 {timer}
             </div>
             <ul>
-                <li style={{color: "orange", textAlign: "end", marginBottom: 8, marginTop: 4}}> {/*inline style*/}
-                    user: user
+                <li style={{color: "orange", textAlign: "end", marginBottom: 8, marginTop: 4, width: 100}}> {/*inline style*/}
+                    user: none
                 </li>
                 <ul>
-                    <li>login/logout</li>
+                    <li
+                        onClick={() => {
+                            setPopupVis(true)
+                        }}
+                    >login/logout
+                    </li>
                 </ul>
             </ul>
         </footer>

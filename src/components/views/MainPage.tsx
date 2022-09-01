@@ -19,8 +19,12 @@ export const MainPage = () => {
                 <li
                     onClick={() => {navigate(RedirectFunc({code: `game`}))}}
                 >Easy</li>
-                <li>Medium</li>
-                <li>Hard</li>
+                <li
+                    onClick={() => {navigate(RedirectFunc({code: `game-medium`}))}}
+                >Medium</li>
+                <li
+                    onClick={() => {navigate(RedirectFunc({code: `game-hard`}))}}
+                >Hard</li>
             </ul>
             </div>
         </section>

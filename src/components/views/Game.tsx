@@ -4,6 +4,7 @@ import {RedirectFunc} from "../../functions/RedirectFunc";
 import {DataProvider} from "../../api/DataProvider";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {pauseTimer, startTimer, stopTimer} from "../../store/slice/timerSlice";
+import {Popup} from "../layouts/Popup";
 
 export const Game = () => {
 
@@ -84,74 +85,81 @@ export const Game = () => {
 
 
     return (
-        <section className={'game'}>
-            <p className="game__target">
-                {
-                    target//.length > 0
-                        ? target
-                        : `Tap "Play" when you are ready`
-                }
-            </p>
-            <textarea
-                className={"game__input_text"}
-                value={text}
-                onChange={(e) => {
-                    setText(e.currentTarget.value)
-                }}
-            />
-            <ul className={"game__hints"}>
-                <p className={"game__hints_title"}>Useful shortcuts:</p>
-                <li className={"game__hints_item"}>Ctrl+A - all,</li>
-                <li className={"game__hints_item"}>Insert - change input,</li>
-                <li className={"game__hints_item"}>Home - to start,</li>
-                <li className={"game__hints_item"}>End - to end,</li>
-                <li className={"game__hints_item"}>Ctrl + Arrow - skip word</li>
-                {/*<li className={"game__hints_item"}>Ctrl + Shift + Home/End/Arrow - choose many words</li>*/}
-            </ul>
-            <div className={"game__btns"}>
-                <button
-                    className={(clickedBtn !== 0) ? "game__btns_btn" : "game__btns_btn clicked"}
-                    onClick={() => {
-                        setClickedBtn(0)
-                        pressPlay()
+        <>
+
+            <section className={'game'}>
+                <p className="game__target">
+                    {
+                        target//.length > 0
+                            ? target
+                            : `Tap "Play" when you are ready`
+                    }
+                </p>
+                <textarea
+                    className={"game__input_text"}
+                    value={text}
+                    onChange={(e) => {
+                        if (!pause) {
+                            setText(e.currentTarget.value)
+                        } else {
+                            alert(`Pause is pressed`)
+                        }
+                    }}
+                />
+                <ul className={"game__hints"}>
+                    <p className={"game__hints_title"}>Useful shortcuts:</p>
+                    <li className={"game__hints_item"}>Ctrl+A - all,</li>
+                    <li className={"game__hints_item"}>Insert - change input,</li>
+                    <li className={"game__hints_item"}>Home - to start,</li>
+                    <li className={"game__hints_item"}>End - to end,</li>
+                    <li className={"game__hints_item"}>Ctrl + Arrow - skip word</li>
+                    {/*<li className={"game__hints_item"}>Ctrl + Shift + Home/End/Arrow - choose many words</li>*/}
+                </ul>
+                <div className={"game__btns"}>
+                    <button
+                        className={(clickedBtn !== 0) ? "game__btns_btn" : "game__btns_btn clicked"}
+                        onClick={() => {
+                            setClickedBtn(0)
+                            pressPlay()
+                            //setWord
+                        }}
+                    >Play
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            setClickedBtn(1)
+                            pressPause()
+                            //pauseTimer
+                        }}
+                        className={(clickedBtn !== 1) ? "game__btns_btn" : "game__btns_btn clicked"}
+                    >Pause
+                    </button>
+
+                    <button
+                        //restartTimer
                         //setWord
-                    }}
-                >Play
-                </button>
+                        className={(clickedBtn !== 2) ? "game__btns_btn" : "game__btns_btn clicked"}
+                        onClick={() => {
+                            setClickedBtn(2)
+                            pressReset()
+                            setTarget(``)
+                        }}
+                    >Restart
+                    </button>
 
-                <button
-                    onClick={() => {
-                        setClickedBtn(1)
-                        pressPause()
-                        //pauseTimer
-                    }}
-                    className={(clickedBtn !== 1) ? "game__btns_btn" : "game__btns_btn clicked"}
-                >Pause
-                </button>
+                    <button
+                        onClick={() => {
+                            setClickedBtn(3)
+                            pressReset()
+                            navigate(RedirectFunc({code: `main`}))
+                        }}
+                        className={(clickedBtn !== 3) ? "game__btns_btn" : "game__btns_btn clicked"}
+                    >Exit
+                    </button>
+                </div>
 
-                <button
-                    //restartTimer
-                    //setWord
-                    className={(clickedBtn !== 2) ? "game__btns_btn" : "game__btns_btn clicked"}
-                    onClick={() => {
-                        setClickedBtn(2)
-                        pressReset()
-                        setTarget(``)
-                    }}
-                >Restart
-                </button>
-
-                <button
-                    onClick={() => {
-                        setClickedBtn(3)
-                        pressReset()
-                        navigate(RedirectFunc({code: `main`}))
-                    }}
-                    className={(clickedBtn !== 3) ? "game__btns_btn" : "game__btns_btn clicked"}
-                >Exit
-                </button>
-            </div>
-
-        </section>
+            </section>
+        </>
     )
 }

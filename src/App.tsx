@@ -9,11 +9,17 @@ import {RedirectFunc} from "./functions/RedirectFunc";
 import {LeaderBoard} from "./components/views/LeaderBoard";
 import {Game} from "./components/views/Game";
 import {NotFound} from "./components/views/404";
+import {ThemeBtn} from "./components/layouts/Theme";
+import {useAppSelector} from "./store/hooks";
 
 function App() {
+
+    let theme = useAppSelector(state => state.theme.theme)
+
     return (
         <BrowserRouter>
-            <div className={"mask"}></div>
+            <ThemeBtn/>
+            <div className={(theme === `light`) ? "mask" : "mask_dark"}></div>
             <Navbar/>
 
             <Routes>

@@ -1,5 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {RedirectFunc} from "../../functions/RedirectFunc";
 
 export const NotFound = () => {
 
@@ -16,7 +17,11 @@ export const NotFound = () => {
                         }}
                     >go back
                     </li>
-                    <li className={"not-found__list__item"}>go main</li>
+                    <li className={"not-found__list__item"}
+                        onClick={() => {
+                            navigate(RedirectFunc({code: "main"}))
+                        }}
+                    >go main</li>
                 </ul>
             </div>
         </div>
